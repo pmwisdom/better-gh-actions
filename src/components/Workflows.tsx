@@ -1,4 +1,5 @@
 import {
+  Button,
   Container,
   Header,
   List,
@@ -12,6 +13,7 @@ import {
 import { useListGithubWorkflows } from "../api/github";
 import { GithubWorkflow } from "../api/github/types";
 import { set } from "lodash/fp";
+import { workflowConfigs } from "../config/workflowConfigs";
 
 interface NestedWorkflows {
   // domain
@@ -43,86 +45,11 @@ export const Workflows = () => {
 
   const nestedWorkflowData = nestWorkflows(data?.workflows || []);
 
-  //   return (
-  // //     <Container></Container>
-  // //     <List>
-  // //       <ListItem>
-  // //         <ListIcon name="folder" />
-  // //         <ListContent>
-  // //           <ListHeader>src</ListHeader>
-  // //           <ListDescription>Source files for project</ListDescription>
-  // //           <ListList>
-  // //             <ListItem>
-  // //               <ListIcon name="folder" />
-  // //               <ListContent>
-  // //                 <ListHeader>site</ListHeader>
-  // //                 <ListDescription>Your site's theme</ListDescription>
-  // //               </ListContent>
-  // //             </ListItem>
-  // //             <ListItem>
-  // //               <ListIcon name="folder" />
-  // //               <ListContent>
-  // //                 <ListHeader>themes</ListHeader>
-  // //                 <ListDescription>Packaged theme files</ListDescription>
-  // //                 <ListList>
-  // //                   <ListItem>
-  // //                     <ListIcon name="folder" />
-  // //                     <ListContent>
-  // //                       <ListHeader>default</ListHeader>
-  // //                       <ListDescription>Default packaged theme</ListDescription>
-  // //                     </ListContent>
-  // //                   </ListItem>
-  // //                   <ListItem>
-  // //                     <ListIcon name="folder" />
-  // //                     <ListContent>
-  // //                       <ListHeader>my_theme</ListHeader>
-  // //                       <ListDescription>
-  // //                         Packaged themes are also available in this folder
-  // //                       </ListDescription>
-  // //                     </ListContent>
-  // //                   </ListItem>
-  // //                 </ListList>
-  // //               </ListContent>
-  // //             </ListItem>
-  // //             <ListItem>
-  // //               <ListIcon name="file" />
-  // //               <ListContent>
-  // //                 <ListHeader>theme.config</ListHeader>
-  // //                 <ListDescription>
-  // //                   Config file for setting packaged themes
-  // //                 </ListDescription>
-  // //               </ListContent>
-  // //             </ListItem>
-  // //           </ListList>
-  // //         </ListContent>
-  // //       </ListItem>
-  // //       <ListItem>
-  // //         <ListIcon name="folder" />
-  // //         <ListContent>
-  // //           <ListHeader>dist</ListHeader>
-  // //           <ListDescription>Compiled CSS and JS files</ListDescription>
-  // //           <ListList>
-  // //             <ListItem>
-  // //               <ListIcon name="folder" />
-  // //               <ListContent>
-  // //                 <ListHeader>components</ListHeader>
-  // //                 <ListDescription>
-  // //                   Individual component CSS and JS
-  // //                 </ListDescription>
-  // //               </ListContent>
-  // //             </ListItem>
-  // //           </ListList>
-  // //         </ListContent>
-  // //       </ListItem>
-  // //       <ListItem>
-  // //         <ListIcon name="file" />
-  // //         <ListContent>
-  // //           <ListHeader>semantic.json</ListHeader>
-  // //           <ListDescription>Contains build settings for gulp</ListDescription>
-  // //         </ListContent>
-  // //       </ListItem>
-  // //     </List>
-  // //   );
+  const handleWorkflowClick = (workflow: GithubWorkflow) => {
+    const config = workflowConfigs[workflow.id];
+
+    console.log("CONFIG", config);
+  };
 
   return (
     <Container textAlign="left">
@@ -146,7 +73,16 @@ export const Workflows = () => {
                           <ListItem>
                             <ListIcon />
                             <ListContent>
-                              <ListHeader>{`${environmentKey} >`}</ListHeader>
+                              <ListHeader
+                                as="a"
+                                onClick={() =>
+                                  handleWorkflowClick(
+                                    nestedWorkflowData[domainKey][actionKey][
+                                      environmentKey
+                                    ]
+                                  )
+                                }
+                              >{`${environmentKey} >`}</ListHeader>
                             </ListContent>
                           </ListItem>
                         ))}
