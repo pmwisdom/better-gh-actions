@@ -25,10 +25,9 @@ on:
         required: true
         type: choice
         options:
-          options:
-            - functionOne
-            - functionTwo
-            - functionThree
+          - functionOne
+          - functionTwo
+          - functionThree
 jobs:
   test:
     runs-on: ubuntu-latest
