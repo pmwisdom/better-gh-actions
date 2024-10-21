@@ -1,4 +1,4 @@
-name: functions-dev-deploy
+name: functions-deploy-dev
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   workflow_dispatch:
