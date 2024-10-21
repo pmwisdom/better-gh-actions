@@ -7,6 +7,8 @@ import { useListGithubWorkflows } from "./api/github/useListGithubWorkflows";
 function App() {
   const { data } = useListGithubWorkflows();
 
+  console.log("DATA", data);
+
   return (
     <div className="App">
       <header className="App-header">

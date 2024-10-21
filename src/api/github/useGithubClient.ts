@@ -20,10 +20,11 @@ export const useGithubClient = (config: AxiosRequestConfig) => {
         setError(err.cause?.message);
         setLoading(false);
       } else {
-        throw err;
+        setLoading(false);
+        setError("Unexpected Errror");
       }
     }
-  }, [config]);
+  }, []);
 
   useEffect(() => {
     (async () => {
