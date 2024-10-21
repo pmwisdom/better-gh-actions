@@ -1,6 +1,6 @@
 name: Deploy Dev Function
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: workflow-dispatch
+on: workflow_dispatch
 inputs:
   logLevel:
     description: "Log level"
