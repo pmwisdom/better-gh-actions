@@ -2,8 +2,8 @@ import { AxiosRequestConfig, isAxiosError } from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { githubClient } from "./githubClient";
 
-export const useGithubClient = (config: AxiosRequestConfig) => {
-  const [data, setData] = useState();
+export const useGithubClient = <ResponseType>(config: AxiosRequestConfig) => {
+  const [data, setData] = useState<ResponseType>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>();
 
