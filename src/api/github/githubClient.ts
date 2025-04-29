@@ -1,6 +1,5 @@
 import Axios from "axios";
 
-console.log("PROCESS", process.env);
 export const githubClient = Axios.create({
   baseURL: `https://api.github.com/repos/pmwisdom/better-gh-actions`,
   headers: {

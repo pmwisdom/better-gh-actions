@@ -8,7 +8,7 @@ import { Workflows } from "./components/Workflows";
 function App() {
   const { data } = useListGithubWorkflows();
 
-  console.log("DATA", data);
+  console.log("DATA 222", data);
 
   return (
     <div className="App">
